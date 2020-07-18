@@ -1,15 +1,16 @@
-package class0716.practice.sortPractice;
+package class0716.practice.sortpractice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  *@program: huipu_onclass
- *@description: 一个ArrayList集合，里面存储6个整数，使用冒泡排序，将该集合升序
+ *@description: 3、	定义一个ArrayList集合，里面存储6个整数，使用选择排序，将该集合降序
  *@author: ming
- *@create: 2020-07-16 16:29
+ *@create: 2020-07-16 16:35
  */
-public class PracticeDemo2 {
+public class SelectSort {
+
     public static void main(String[] args) {
 
         List<Integer> list = new ArrayList<Integer>();
@@ -20,15 +21,14 @@ public class PracticeDemo2 {
         System.out.println("排序前的集合为：");
         System.out.println(Arrays.toString(list.toArray()));
 
-        //冒泡排序
+        //选择排序
         for (int i = 0; i < list.size() - 1; i++) {
 
-            for (int j = 0; j < list.size() - 1 - i; j++) {
-                if (list.get(j) > list.get(j + 1)) {
-                    //交换值
-                    int index = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, index);
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(i) > list.get(j)) {
+                    int index = list.get(i);
+                    list.set(i, list.get(j));
+                    list.set(j, index);
                 }
             }
 
@@ -36,6 +36,5 @@ public class PracticeDemo2 {
 
         System.out.println("排序后的集合为：");
         System.out.println(Arrays.toString(list.toArray()));
-
     }
 }
