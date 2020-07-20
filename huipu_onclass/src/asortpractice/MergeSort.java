@@ -1,7 +1,7 @@
 package asortpractice;
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
+import java.util.Scanner;
 
 /**
  *@program: huipu_onclass
@@ -11,52 +11,56 @@ import java.util.List;
  */
 public class MergeSort {
 
-    public static void main(String[] args) {
+    public static long count = 0;
 
-        List<Integer> list = new ArrayList<Integer>();
-        List<Integer> temp = new ArrayList<Integer>();
+    public static void main(String args[]) throws Exception {
 
+        int[] a = new int[10];
         for (int i = 0; i < 10; i++) {
-            list.add((int) (Math.random() * 100));
-            temp.add(0);
+            a[i] = (int) (Math.random() * 100);
         }
-        System.out.println("排序前的集合为：");
-        System.out.println(Arrays.toString(list.toArray()));
+        System.out.println(Arrays.toString(a));
 
-        merge(list, temp, 0, list.size() - 1);
-
-        System.out.println("排序后的集合为：");
-        System.out.println(Arrays.toString(list.toArray()));
-
+        mergeSort(a, 0, a.length - 1);
+        System.out.println(count);
+        System.out.println(Arrays.toString(a));
     }
 
-    private static void merge(List<Integer> list, List<Integer> temp, int l, int r) {
-        //取得中间数
-        int mid = (r + l) / 2;
-        if (l == r) {
+    private static void mergeSort(int[] a, int lo, int hi) {
+        if (lo >= hi) {
             return;
         }
 
-        merge(list, temp, l, mid);
-        merge(list, temp, mid + 1, r);
+        int mid = lo + (hi - lo) / 2;
 
-        for (int i = l; i <= r; i++) {
-            temp.set(i, list.get(i));
-        }
-
-        int i1 = l;
-        int i2 = mid + 1;
-        for (int cur = l; cur <= r; cur++) {
-            if (i1 == mid + 1) {
-                list.set(cur, temp.get(i2++));
-            } else if (i2 > r) {
-                list.set(cur, temp.get(i1++));
-            } else if (temp.get(i1) < temp.get(i2)) {
-                list.set(cur, temp.get(i1++));
-            } else {
-                list.set(cur, temp.get(i2++));
-            }
-        }
+        mergeSort(a, lo, mid);
+        mergeSort(a, mid + 1, hi);
+        merge(a, lo, mid, hi);
     }
 
+    private static void merge(int[] a, int lo, int mid, int hi) {
+        int p = lo, q = mid + 1;
+
+        int[] nums = new int[hi - lo + 1];
+        int index = 0;
+
+        while (p <= mid && q <= hi) {
+            if (a[p] > a[q]) {
+                count += mid - p + 1;
+                nums[index++] = a[q++];
+            } else {
+                nums[index++] = a[p++];
+            }
+        }
+
+        while (p <= mid) {
+            nums[index++] = a[p++];
+        }
+
+        while (q <= hi) {
+            nums[index++] = a[q++];
+        }
+
+        System.arraycopy(nums, 0, a, lo, hi - lo + 1);
+    }
 }
