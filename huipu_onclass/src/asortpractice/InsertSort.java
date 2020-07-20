@@ -1,15 +1,15 @@
-package class0716.practice.sortpractice;
+package asortpractice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  *@program: huipu_onclass
- *@description: 3、	定义一个ArrayList集合，里面存储6个整数，使用选择排序，将该集合降序
+ *@description: 插入排序
  *@author: ming
- *@create: 2020-07-16 16:35
+ *@create: 2020-07-18 21:06
  */
-public class SelectSort {
+public class InsertSort {
 
     public static void main(String[] args) {
 
@@ -21,20 +21,20 @@ public class SelectSort {
         System.out.println("排序前的集合为：");
         System.out.println(Arrays.toString(list.toArray()));
 
-        //选择排序
-        for (int i = 0; i < list.size() - 1; i++) {
+        int j;
+        for (int i = 1; i < list.size(); i++) {
 
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i) > list.get(j)) {
-                    int index = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, index);
-                }
+            int index = list.get(i);
+            for (j = i; j > 0 && (list.get(j) < list.get(j - 1)); j--) {
+                list.set(j, list.get(j - 1));
+                list.set(j-1, index);
             }
 
         }
 
         System.out.println("排序后的集合为：");
         System.out.println(Arrays.toString(list.toArray()));
+
     }
+
 }

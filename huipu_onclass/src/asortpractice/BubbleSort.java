@@ -1,4 +1,4 @@
-package class0716.practice.sortpractice;
+package asortpractice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
