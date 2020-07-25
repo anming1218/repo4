@@ -23,7 +23,7 @@ public class ShellSort {
 
         for (int gap = list.size() / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < list.size(); i++) {
-                for (int j = i; j >= gap && list.get(j) - list.get(j - gap) < 0; j -= gap) {
+                for (int j = i; j >= gap && list.get(j) < list.get(j - gap); j -= gap) {
                     //交换值
                     int index = list.get(j);
                     list.set(j, list.get(j - gap));
