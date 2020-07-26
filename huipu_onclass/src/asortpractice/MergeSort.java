@@ -18,8 +18,8 @@ public class MergeSort {
     public static void main(String args[]) throws Exception {
 
         //给数组填充数据
-        int[] a = new int[10];
-        for (int i = 0; i < 10; i++) {
+        int[] a = new int[6];
+        for (int i = 0; i < 6; i++) {
             a[i] = (int) (Math.random() * 100);
         }
         System.out.println(Arrays.toString(a));

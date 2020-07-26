@@ -15,7 +15,7 @@ public class HeapSort {
 
         List<Integer> list = new ArrayList<Integer>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 6; i++) {
             list.add((int) (Math.random() * 100));
         }
         System.out.println("排序前的集合为：");
