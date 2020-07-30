@@ -1,7 +1,7 @@
 package asortpractice;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
+
 
 /**
  *@program: huipu_onclass
@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class QuickTest {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
+
         //给数组填充数据
         int[] a = new int[10];
         for (int i = 0; i < a.length; i++) {
@@ -24,23 +24,26 @@ public class QuickTest {
     }
 
     private static void quickSort(int[] a, int lo, int hi) {
-
-        if (lo >= hi) {
+        if (lo > hi) {
             return;
         }
 
-        int point = partition(a, lo, hi);
+        int pivot = paritition(a, lo, hi);
 
-        partition(a, lo, point - 1);
-        partition(a, point + 1, hi);
+        quickSort(a, lo, pivot - 1);
+        quickSort(a, pivot + 1, hi);
+
     }
 
-    private static int partition(int[] a, int lo, int hi) {
+    private static int paritition(int[] a, int lo, int hi) {
+
         Random random = new Random();
         int pivotIndex = random.nextInt(hi - lo + 1) + lo;
         int pivotValue = a[pivotIndex];
-        int savedPosition = hi;
+
+        int high = hi;
         swap(a, pivotIndex, hi);
+
         hi--;
 
         while (lo <= hi) {
@@ -52,14 +55,17 @@ public class QuickTest {
             }
         }
 
-        swap(a, lo, savedPosition);
+        swap(a, lo, high);
         return lo;
+
+
     }
 
-    private static void swap(int[] a, int pivotIndex, int hi) {
-
-        int temp = a[pivotIndex];
-        a[pivotIndex] = a[hi];
+    private static void swap(int[] a, int lo, int hi) {
+        int temp = a[lo];
+        a[lo] = a[hi];
         a[hi] = temp;
     }
+
+
 }
